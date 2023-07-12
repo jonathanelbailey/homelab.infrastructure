@@ -23,11 +23,11 @@ jobs:
       - name: Terraform Init
         run: pushd terraform/k8s; terraform init
       - name: Terraform Validate
-        run: terraform validate
+        run: pushd terraform/k8s; terraform validate
       - name: Terraform Plan
-        run: terraform plan
+        run: pushd terraform/k8s; terraform plan
       - name: Terraform Apply
-        run: terraform apply --auto-approve
+        run: pushd terraform/k8s; terraform apply --auto-approve
       # - name: Checkout
       #   uses: actions/checkout@v3
 
