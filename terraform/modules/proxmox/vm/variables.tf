@@ -6,15 +6,15 @@ variable "virtual_machines" {
 variable "cloud_init_user" {
   type        = string
   default     = "ubuntu"
-  description = "Identifies the object of virtual machines."
+  description = "Changes the default cloud-init user."
 }
 variable "cloud_init_pass" {
   type        = string
   default     = "password"
-  description = "Identifies the object of virtual machines."
+  description = "Changes the default cloud-init user password."
 }
 variable "sshkeys" {
-  type        = list(string)
-  default     = []
-  description = "Identifies the object of virtual machines."
+  type        = str
+  default     = ""
+  description = "Add ssh public keys to VM."
 }
