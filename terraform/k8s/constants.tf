@@ -22,11 +22,12 @@ locals {
         storage_dev         = "local"
         network_bridge_type = "vmbr0"
         network_model       = "virtio"
-        cloud_init_pass     = "G33kw33k!"
         automatic_reboot    = true
         network_firewall    = false #defaults to false
         dns_servers         = "10.0.0.2"
       }
     }
   }
+
+  machines = lookup(local.machine_map, "machines", {})
 }
