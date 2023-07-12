@@ -9,8 +9,6 @@ env:
   PM_API_URL: ${{ secrets.PM_API_URL }}
   PM_API_TOKEN_ID: ${{ secrets.PM_API_TOKEN_ID }}
   PM_API_TOKEN_SECRET: ${{ secrets.PM_API_TOKEN_SECRET }}
-  TF_WORKSPACE: "learn-terraform-github-actions"
-  CONFIG_DIRECTORY: "./"
 
 jobs:
   terraform:
@@ -19,8 +17,12 @@ jobs:
     permissions:
       contents: read
     steps:
+      # Checkout repository
+      - uses: actions/checkout@v3
+      # This step references the directory that contains the action.
+      - uses: ./.github/actions/hello-world-action
       - name: Terraform Init
-        run: terraform init
+        run: pushd terraform/k8s; terraform init
       - name: Terraform Validate
         run: terraform validate
       - name: Terraform Plan
