@@ -23,7 +23,7 @@ resource "proxmox_vm_qemu" "virtual_machines" {
   nic              = each.value.network_model
   bridge           = each.value.network_bridge_type
   sshkeys          = var.sshkeys
-  ciuser           = each.value.cloud_init_user
+  ciuser           = var.cloud_init_user
   ipconfig0        = each.value.ipconfig0
   cipassword       = var.cloud_init_pass
 }
