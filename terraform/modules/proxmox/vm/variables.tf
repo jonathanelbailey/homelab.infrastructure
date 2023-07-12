@@ -14,7 +14,7 @@ variable "cloud_init_pass" {
   description = "Changes the default cloud-init user password."
 }
 variable "sshkeys" {
-  type        = str
+  type        = string
   default     = ""
   description = "Add ssh public keys to VM."
 }
