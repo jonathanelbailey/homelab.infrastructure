@@ -1,15 +1,15 @@
-resource "tls_private_key" "okd_machine_keys" {
+resource "tls_private_key" "virtual_machine_keys" {
   algorithm = "RSA"
   rsa_bits  = 4096
 }
 
-resource "proxmox_vm_qemu" "okd_machines" {
+resource "proxmox_vm_qemu" "virtual_machines" {
   depends_on = [
-    tls_private_key.okd_machine_keys
+    tls_private_key.virtual_machine_keys
   ]
-  for_each         = local.machines
+  for_each         = var.virtual_machines
   name             = each.value.name
-  qemu_os          = "other"
+  qemu_os          = each.value.qemu_os
   desc             = each.value.description
   target_node      = each.value.target_node
   os_type          = each.value.os_type
@@ -19,11 +19,12 @@ resource "proxmox_vm_qemu" "okd_machines" {
   sockets          = each.value.socket
   cores            = each.value.cores
   ssh_user         = each.value.ssh_user
-  sshkeys          = tls_private_key.okd_machine_keys.public_key_openssh
+  sshkeys          = tls_private_key.virtual_machine_keys.public_key_openssh
   ciuser           = each.value.ssh_user
   ipconfig0        = "ip=${each.value.ip_address}/32,gw=${each.value.gateway}"
   cipassword       = each.value.cloud_init_pass
   automatic_reboot = each.value.automatic_reboot
+  nameserver       = each.value.dns_servers
 
   disk {
     storage = each.value.storage_dev
