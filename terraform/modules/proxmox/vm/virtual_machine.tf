@@ -20,6 +20,7 @@ resource "proxmox_vm_qemu" "virtual_machines" {
   sockets          = each.value.socket
   cores            = each.value.cores
   disk_gb          = each.value.disk_gb
+  scsihw           = each.value.scsihw
   nic              = each.value.network_model
   bridge           = each.value.network_bridge_type
   sshkeys          = var.sshkeys
