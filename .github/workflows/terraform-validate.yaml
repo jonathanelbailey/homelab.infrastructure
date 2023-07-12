@@ -1,6 +1,9 @@
-name: "Terraform Plan"
+name: "Terraform Validate"
 
-on: [pull_request]
+on:
+  push:
+    branches:
+      - feature/.*
 
 env: 
   PM_API_URL: ${{ secrets.PM_API_URL }}
@@ -10,7 +13,7 @@ env:
 
 jobs:
   terraform:
-    name: "Terraform Plan"
+    name: "Terraform Validate"
     runs-on: self-hosted
     permissions:
       contents: read
@@ -24,8 +27,4 @@ jobs:
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./terraform/k8s
-
-      - name: Terraform Plan
-        run: terraform plan
         working-directory: ./terraform/k8s
