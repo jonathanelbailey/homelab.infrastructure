@@ -23,19 +23,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Create TFVars
-        run: |-
-          cat << EOF > dev.tfvars
-          cloud_init_user = "$TF_VAR_cloud_init_user"
-          cloud_init_pass = "$TF_VAR_cloud_init_pass"
-          sshkeys         = "$TF_VAR_sshkeys"
-          EOF
-        working-directory: ./terraform/k8s
-
       - name: Terraform Init
-        run: terraform init -var-file="dev.tfvars"
+        run: terraform init
         working-directory: ./terraform/k8s
 
       - name: Terraform Validate
-        run: terraform validate -var-file="dev.tfvars"
+        run: terraform validate
         working-directory: ./terraform/k8s
