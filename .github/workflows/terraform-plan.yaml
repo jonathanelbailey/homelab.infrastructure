@@ -7,6 +7,8 @@ env:
   PM_API_TOKEN_ID: ${{ secrets.PM_API_TOKEN_ID }}
   PM_API_TOKEN_SECRET: ${{ secrets.PM_API_TOKEN_SECRET }}
   TF_VAR_cloud_init_pass: ${{ secrets.TF_VAR_CLOUD_INIT_PASS }}
+  TF_VAR_cloud_init_user: ${{ secrets.TF_VAR_CLOUD_INIT_USER }}
+  TF_VAR_sshkeys: ${{ secrets.TF_VAR_SSHKEYS }}
 
 jobs:
   terraform:
@@ -18,14 +20,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Create TFVars
+        run: |-
+          cat << EOF > dev.tfvars
+          cloud_init_user = "$TF_VAR_cloud_init_user"
+          cloud_init_pass = "$TF_VAR_cloud_init_pass"
+          sshkeys         = "$TF_VAR_sshkeys"
+          EOF
+        working-directory: ./terraform/k8s
+
       - name: Terraform Init
         run: terraform init
         working-directory: ./terraform/k8s
 
-      - name: Terraform Validate
-        run: terraform validate
-        working-directory: ./terraform/k8s
-
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var-file="dev.tfvars"
         working-directory: ./terraform/k8s
