@@ -9,37 +9,21 @@ resource "proxmox_vm_qemu" "virtual_machines" {
   ]
   for_each         = var.virtual_machines
   name             = each.value.name
-  # agent            = each.value.agent
-  qemu_os          = each.value.qemu_os
   desc             = each.value.description
+  agent            = each.value.agent
+  qemu_os          = each.value.qemu_os
   target_node      = each.value.target_node
-  # os_type          = each.value.os_type
+  os_type          = each.value.os_type
   full_clone       = each.value.full_clone
   clone            = each.value.template
-  # memory           = each.value.memory
-  # sockets          = each.value.socket
-  # cores            = each.value.cores
-  # ssh_user         = each.value.ssh_user
-  # sshkeys          = var.sshkeys
-  # ciuser           = each.value.ssh_user
-  # ipconfig0        = "ip=${each.value.ip_address}/32,gw=${each.value.gateway}"
-  # cipassword       = var.cloud_init_pass
-  # automatic_reboot = each.value.automatic_reboot
-  # nameserver       = each.value.dns_servers
-
-  # disk {
-  #   storage = each.value.storage_dev
-  #   type    = each.value.disk_type
-  #   size    = each.value.storage
-  # }
-
-  # network {
-  #   bridge   = each.value.network_bridge_type
-  #   model    = each.value.network_model
-  #   mtu      = 0
-  #   macaddr  = each.value.mac_address
-  #   queues   = 0
-  #   rate     = 0
-  #   firewall = each.value.network_firewall
-  # }
+  memory           = each.value.memory
+  sockets          = each.value.socket
+  cores            = each.value.cores
+  disk_gb          = each.value.disk_gb
+  nic              = each.value.network_model
+  bridge           = each.value.network_bridge_type
+  sshkeys          = var.sshkeys
+  ciuser           = each.value.cloud_init_user
+  ipconfig0        = each.value.ipconfig0
+  cipassword       = var.cloud_init_pass
 }
