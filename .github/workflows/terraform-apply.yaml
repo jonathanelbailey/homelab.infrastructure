@@ -9,6 +9,7 @@ env:
   PM_API_URL: ${{ secrets.PM_API_URL }}
   PM_API_TOKEN_ID: ${{ secrets.PM_API_TOKEN_ID }}
   PM_API_TOKEN_SECRET: ${{ secrets.PM_API_TOKEN_SECRET }}
+  TF_VAR_cloud_init_pass: ${{ secrets.TF_VAR_CLOUD_INIT_PASS }}
 
 jobs:
   terraform:
@@ -19,8 +20,6 @@ jobs:
     steps:
       # Checkout repository
       - uses: actions/checkout@v3
-      # This step references the directory that contains the action.
-      - uses: ./.github/actions/hello-world-action
       - name: Terraform Init
         run: pushd terraform/k8s; terraform init
       - name: Terraform Validate
