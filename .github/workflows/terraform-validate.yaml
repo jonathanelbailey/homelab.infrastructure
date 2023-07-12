@@ -3,7 +3,7 @@ name: "Terraform Validate"
 on:
   push:
     branches:
-      - feature/.*
+      - feature/*
 
 env: 
   PM_API_URL: ${{ secrets.PM_API_URL }}
