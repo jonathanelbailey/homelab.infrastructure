@@ -16,6 +16,7 @@ locals {
         ipconfig0           = "ip=dhcp"
         description         = "K8s Cluster for DevQA"
         storage_dev         = "local"
+        scsihw              = "virtio-scsi-pci"
         network_bridge_type = "vmbr0"
         network_model       = "virtio"
       }
