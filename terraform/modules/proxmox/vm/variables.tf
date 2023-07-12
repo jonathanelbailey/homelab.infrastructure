@@ -5,12 +5,12 @@ variable "virtual_machines" {
 }
 variable "cloud_init_user" {
   type        = string
-  default     = "ubuntu"
+  default     = ""
   description = "Changes the default cloud-init user."
 }
 variable "cloud_init_pass" {
   type        = string
-  default     = "password"
+  default     = ""
   description = "Changes the default cloud-init user password."
 }
 variable "sshkeys" {
