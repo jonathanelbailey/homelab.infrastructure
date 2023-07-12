@@ -3,13 +3,18 @@ variable "virtual_machines" {
   default     = {}
   description = "Identifies the object of virtual machines."
 }
-# variable "cloud_init_pass" {
-#   type        = string
-#   default     = "password"
-#   description = "Identifies the object of virtual machines."
-# }
-# variable "sshkeys" {
-#   type        = list(string)
-#   default     = []
-#   description = "Identifies the object of virtual machines."
-# }
+variable "cloud_init_user" {
+  type        = string
+  default     = "ubuntu"
+  description = "Changes the default cloud-init user."
+}
+variable "cloud_init_pass" {
+  type        = string
+  default     = "password"
+  description = "Changes the default cloud-init user password."
+}
+variable "sshkeys" {
+  type        = string
+  default     = ""
+  description = "Add ssh public keys to VM."
+}
