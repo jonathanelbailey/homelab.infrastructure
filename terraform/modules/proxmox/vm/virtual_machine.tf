@@ -18,7 +18,6 @@ resource "proxmox_vm_qemu" "deploy_vm" {
   ipconfig0        = var.ipconfig0
   cipassword       = var.cipassword
   oncreate         = var.oncreate
-
 }
 
 data "http" "resize_vm_boot_disk" {

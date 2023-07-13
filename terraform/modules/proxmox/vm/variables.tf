@@ -82,7 +82,7 @@ variable "scsihw" {
   description = "SCSI device for boot disk"
 }
 
-variable "disk_size" {
+variable "boot_disk_size" {
   type        = string
   default     = "40G"
   description = "Size of boot disk"
