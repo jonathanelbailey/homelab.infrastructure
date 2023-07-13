@@ -4,5 +4,5 @@ module "virtual_machine" {
   cores               = 16
   memory              = 32768
   desc                = "K8s Cluster for DevQA"
-  vm_id               = module.proxmox_vm_qemu.deploy_vm.id
+  vm_id               = module.virtual_machine.vm_id
 }

@@ -127,3 +127,7 @@ variable "sshkeys" {
   default     = ""
   description = "Add ssh public keys to VM."
 }
+
+variable "vm_id" {
+  description = "ID of Created VM"
+}
