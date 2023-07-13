@@ -43,5 +43,6 @@ jobs:
         working-directory: ./terraform/k8s
 
       - name: Terraform Output
+        if: always()
         run: terraform output
         working-directory: ./terraform/k8s
