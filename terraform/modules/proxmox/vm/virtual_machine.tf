@@ -20,24 +20,15 @@ resource "proxmox_vm_qemu" "deploy_vm" {
   oncreate         = var.oncreate
 }
 
-data "http" "resize_vm_boot_disk" {
-  depends_on = [
-    proxmox_vm_qemu.deploy_vm
-  ]
-  url         = "${var.pm_api_url}/nodes/${var.vm_id.id}/resize"
-  method      = "PUT"
-
-  request_headers = {
-    Authorization       = "PVEAPIToken=${var.pm_api_token_secret}"
-    Content-Type        = "application/json"
-  }
-
-  request_body = "'disk': 'scsi0', 'size': '${var.boot_disk_size}'"
+data "external" "resize_vm_boot_disk" {
+  program = [
+    "bash", "-c", "${path.module}/files/resize_vm_boot_disk.sh", 
+    "scsi0", "${var.boot_disk_size}", "${var.vm_id.id}"]
 }
 
 data "http" "start_vm" {
   depends_on = [
-    http.resize_vm_boot_disk
+    external.resize_vm_boot_disk
   ]
   url         = "${var.pm_api_url}/nodes/${var.vm_id.id}/status/start"
   method      = "POST"
