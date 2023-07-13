@@ -1,22 +1,22 @@
 resource "proxmox_vm_qemu" "deploy_vm" {
   name             = var.name
-  desc             = var.description
+  desc             = var.desc
   agent            = var.agent
   qemu_os          = var.qemu_os
   target_node      = var.target_node
   os_type          = var.os_type
   full_clone       = var.full_clone
-  clone            = var.template
+  clone            = var.clone
   memory           = var.memory
-  sockets          = var.socket
+  sockets          = var.sockets
   cores            = var.cores
   scsihw           = var.scsihw
-  nic              = var.network_model
-  bridge           = var.network_bridge_type
+  nic              = var.nic
+  bridge           = var.bridge
   sshkeys          = var.sshkeys
-  ciuser           = var.cloud_init_user
+  ciuser           = var.ciuser
   ipconfig0        = var.ipconfig0
-  cipassword       = var.cloud_init_pass
+  cipassword       = var.cipassword
   oncreate         = var.oncreate
 
 }

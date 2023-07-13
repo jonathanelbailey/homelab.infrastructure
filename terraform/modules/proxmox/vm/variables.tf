@@ -102,12 +102,12 @@ variable "agent" {
 
 variable "ciuser" {
   type        = string
-  default     = ""
+  default     = "ubuntu"
   description = "Changes the default cloud-init user."
 }
 variable "cipassword" {
   type        = string
-  default     = ""
+  default     = "password"
   description = "Changes the default cloud-init user password."
 }
 variable "sshkeys" {
