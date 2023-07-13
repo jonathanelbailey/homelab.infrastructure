@@ -41,3 +41,7 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve -var-file="dev.tfvars"
         working-directory: ./terraform/k8s
+
+      - name: Terraform Output
+        run: terraform output
+        working-directory: ./terraform/k8s
