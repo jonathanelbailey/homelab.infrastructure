@@ -27,9 +27,6 @@ data "external" "resize_vm_boot_disk" {
 }
 
 data "http" "start_vm" {
-  depends_on = [
-    external.resize_vm_boot_disk
-  ]
   url         = "${var.pm_api_url}/nodes/${var.vm_id.id}/status/start"
   method      = "POST"
 
