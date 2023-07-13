@@ -32,10 +32,7 @@ data "http" "resize_vm_boot_disk" {
     Content-Type        = "application/json"
   }
 
-  request_body = {
-    disk                = "scsi0"
-    size                = var.boot_disk_size
-  }
+  request_body = "'disk': 'scsi0', 'size': '${var.boot_disk_size}'"
 }
 
 data "http" "start_vm" {
