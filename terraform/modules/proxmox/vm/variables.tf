@@ -1,3 +1,9 @@
+variable "pm_api_url" {
+  type        = string
+  default     = "https://localhost:8006/api2/json"
+  description = "Proxmox API URL"
+}
+
 variable "name" {
   type        = string
   default     = "ubuntu"
