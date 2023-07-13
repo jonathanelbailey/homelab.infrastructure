@@ -1,5 +1,4 @@
 resource "proxmox_vm_qemu" "deploy_vm" {
-  pm_api_url       = var.pm_api_url
   name             = var.name
   desc             = var.desc
   agent            = var.agent
