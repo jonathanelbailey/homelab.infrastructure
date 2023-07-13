@@ -4,6 +4,12 @@ variable "pm_api_url" {
   description = "Proxmox API URL"
 }
 
+variable "pm_api_token_secret" {
+  type        = string
+  default     = ""
+  description = "Terraform API token"
+}
+
 variable "name" {
   type        = string
   default     = "ubuntu"

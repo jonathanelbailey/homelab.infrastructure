@@ -29,7 +29,7 @@ data "http" "resize_vm_boot_disk" {
   depends_on = [
     proxmox_vm_qemu.deploy_vm
   ]
-  url         = "${provider.proxmox.pm_api_url}/nodes/${vm_id}/resize"
+  url         = "${var.pm_api_url}/nodes/${vm_id}/resize"
   method      = "PUT"
 
   request_headers = {

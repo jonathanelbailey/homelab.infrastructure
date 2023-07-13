@@ -26,10 +26,11 @@ jobs:
       - name: Create TFVars
         run: |-
           cat << EOF > dev.tfvars
-          pm_api_url      = "$PM_API_URL"
-          cloud_init_user = "$TF_VAR_cloud_init_user"
-          cloud_init_pass = "$TF_VAR_cloud_init_pass"
-          sshkeys         = "$TF_VAR_sshkeys"
+          pm_api_url          = "$PM_API_URL"
+          pm_api_token_secret = "$PM_API_TOKEN_SECRET"
+          cloud_init_user     = "$TF_VAR_cloud_init_user"
+          cloud_init_pass     = "$TF_VAR_cloud_init_pass"
+          sshkeys             = "$TF_VAR_sshkeys"
           EOF
         working-directory: ./terraform/k8s
 
