@@ -22,12 +22,15 @@ resource "proxmox_vm_qemu" "deploy_vm" {
 }
 
 output "vm_id" {
+  depends_on = [
+    proxmox_vm_qemu.deploy_vm
+  ]
   value = proxmox_vm_qemu.deploy_vm.id
 }
 
 data "http" "resize_vm_boot_disk" {
   depends_on = [
-    proxmox_vm_qemu.deploy_vm
+    output.vm_id
   ]
   url         = "${var.pm_api_url}/nodes/${var.vm_id}/resize"
   method      = "PUT"
